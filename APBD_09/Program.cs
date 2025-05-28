@@ -1,3 +1,6 @@
+using APBD_09.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace APBD_09;
 
 public class Program
@@ -8,6 +11,11 @@ public class Program
 
         builder.Services.AddAuthorization();
         builder.Services.AddOpenApi();
+
+        builder.Services.AddDbContext<ClinicDbContext>(opt =>
+        {
+            opt.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
+        });
 
         var app = builder.Build();
 
