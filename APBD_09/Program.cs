@@ -1,4 +1,5 @@
 using APBD_09.Data;
+using APBD_09.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace APBD_09;
@@ -17,6 +18,7 @@ public class Program
             opt.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
         });
 
+        builder.Services.AddScoped<IClinicService, ClinicService>();
         var app = builder.Build();
 
         if (app.Environment.IsDevelopment())
